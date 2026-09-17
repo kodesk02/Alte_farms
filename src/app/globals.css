@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-headline: var(--font-sora);
+  --font-body: var(--font-manrope);
+  --font-label: var(--font-jetbrains-mono);
+
+  /* Primary — green */
+  --color-primary-50: #eafbe7;
+  --color-primary-100: #d3f5cc;
+  --color-primary-200: #a8ec9c;
+  --color-primary-300: #7de26b;
+  --color-primary-400: #94D782;
+  --color-primary-500: #2A6821;
+  --color-primary-600: #23561b;
+  --color-primary-700: #1a4014;
+  --color-primary-800: #112a0d;
+  --color-primary-900: #081505;
+  --color-primary-950: #040a02;
+
+  /* Secondary — orange/red */
+  --color-secondary-50: #fef0ec;
+  --color-secondary-100: #fdd9cd;
+  --color-secondary-200: #fbb29a;
+  --color-secondary-300: #f98c68;
+  --color-secondary-400: #f66236;
+  --color-secondary-500: #FF5631;
+  --color-secondary-600: #c22e0b;
+  --color-secondary-700: #922309;
+  --color-secondary-800: #611706;
+  --color-secondary-900: #310c03;
+  --color-secondary-950: #180601;
+
+  /* Tertiary — red */
+  --color-tertiary-50: #fdecec;
+  --color-tertiary-100: #fbd0cf;
+  --color-tertiary-200: #f7a19f;
+  --color-tertiary-300: #f2726f;
+  --color-tertiary-400: #ee433f;
+  --color-tertiary-500: #D91B19;
+  --color-tertiary-600: #ae1614;
+  --color-tertiary-700: #82100f;
+  --color-tertiary-800: #570b0a;
+  --color-tertiary-900: #2b0505;
+  --color-tertiary-950: #150202;
+
+  /* Neutral — gray */
+  --color-neutral-50: #f4f4f3;
+  --color-neutral-100: #e3e3e2;
+  --color-neutral-200: #c7c7c5;
+  --color-neutral-300: #aaaba8;
+  --color-neutral-400: #8e8f8b;
+  --color-neutral-500: #747870;
+  --color-neutral-600: #5d605a;
+  --color-neutral-700: #464843;
+  --color-neutral-800: #2f302d;
+  --color-neutral-900: #171816;
+  --color-neutral-950: #11140F;
+}
+
+@layer base {
+  :root {
+    --background: var(--color-neutral-950);
+    --foreground: var(--color-neutral-50);
+
+    --primary: var(--color-primary-500);
+    --primary-foreground: var(--color-neutral-50);
+
+    --secondary: var(--color-secondary-500);
+    --secondary-foreground: var(--color-neutral-50);
+
+    --destructive: var(--color-tertiary-500);
+    --destructive-foreground: var(--color-neutral-50);
+
+    --muted: var(--color-neutral-800);
+    --muted-foreground: var(--color-neutral-300);
+
+    --accent: var(--color-neutral-800);
+    --accent-foreground: var(--color-neutral-50);
+
+    --border: var(--color-neutral-700);
+    --input: var(--color-neutral-700);
+    --ring: var(--color-primary-500);
+
+    --radius: 0.625rem;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body {
+  background: var(--color-neutral-950);
+  color: var(--color-neutral-50);
+}
