@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Gallery", href: "/gallery" },
   { label: "Habitat & Cages", href: "/cages" },
-  { label: "Organic Diets", href: "/diets" },
+  // { label: "Organic Diets", href: "/diets" },
 ];
 
 export function Navbar() {

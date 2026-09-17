@@ -2,63 +2,13 @@
 
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navbar } from "@/components/Navbar";
+import { Enclosure, enclosures } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
-
-type Enclosure = {
-  name: string;
-  description: string;
-  tag: string;
-  image: string;
-};
-
-const enclosures: Enclosure[] = [
-  {
-    name: "Architectural Walk-In Aviary",
-    description:
-      "Non-toxic powder coated steel · Custom dimensions · Integrated natural flora biome",
-    tag: "Indoor Biotope",
-    image: "/images/1.jpg",
-  },
-  {
-    name: "Panoramic Flight Enclosure",
-    description:
-      "High-gauge matte black carbon steel · Full-aperture flight clearance · Retractable roof",
-    tag: "Flight Cage",
-    image: "/images/2.jpg",
-  },
-  {
-    name: "Modular Luxury Sanctuary Enclosure",
-    description:
-      "Tempered clear glass inserts · Dark walnut timber framing · Dual-level climatic zoning",
-    tag: "Small Mammal & Avian",
-    image: "/images/3.jpg",
-  },
-  {
-    name: "Artisan Wrought-Iron Caster Aviary",
-    description:
-      "Reinforced wrought iron · Acoustic soft-roll industrial casters · Vaulted dome perch ceiling",
-    tag: "Artisan Mobile",
-    image: "/images/4.jpg",
-  },
-  {
-    name: "Custom Conservation Biotope",
-    description:
-      "Full atmospheric misting integration · Multi-species branch matrix · Microclimate control",
-    tag: "Living Conservatory",
-    image: "/images/5.jpg",
-  },
-  {
-    name: "Curated Heavy-Gauge Studio Aviary",
-    description:
-      "Aircraft-grade alloy structural frame · Precision-spaced bar grid · Dual access points",
-    tag: "Studio Series",
-    image: "/images/6.jpg",
-  },
-];
 
 export default function HabitatsPage() {
   const gridRef = useRef<HTMLElement>(null);
@@ -90,13 +40,7 @@ export default function HabitatsPage() {
     <main className="bg-neutral-950">
       {/* Hero banner */}
       <section className="relative flex h-[30vh] min-h-120 flex-col overflow-hidden">
-        <Image
-          src="/images/8.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover "
-        />
+        <Image src="/images/8.jpg" alt="" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/40 backdrop-blur-sm to-black/30" />
         <div className="relative z-20">
           <Navbar />
@@ -120,13 +64,13 @@ export default function HabitatsPage() {
             CURATED CATALOG
           </span>
           <h2 className="font-headline mt-3 text-4xl font-extrabold text-neutral-50 lg:text-5xl">
-            Fauna Sanctuary Enclosures
+            Architectural Bird Enclosures
           </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {enclosures.map((enclosure) => (
-            <EnclosureCard key={enclosure.name} enclosure={enclosure} />
+            <EnclosureCard key={enclosure.slug} enclosure={enclosure} />
           ))}
         </div>
       </section>
@@ -136,8 +80,10 @@ export default function HabitatsPage() {
 
 function EnclosureCard({ enclosure }: { enclosure: Enclosure }) {
   return (
-    <div className="enclosure-card group overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900">
-      {/* Image */}
+    <Link
+      href={`/cages/${enclosure.slug}`}
+      className="enclosure-card group block overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900 transition-colors hover:border-neutral-700"
+    >
       <div className="relative aspect-4/3 w-full overflow-hidden">
         <Image
           src={enclosure.image}
@@ -146,14 +92,11 @@ function EnclosureCard({ enclosure }: { enclosure: Enclosure }) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
-
-        {/* Tag badge */}
         <span className="font-label absolute left-4 top-4 rounded-full border border-primary-500/40 bg-neutral-950/70 px-3 py-1 text-[10px] uppercase tracking-widest text-primary-300 backdrop-blur-sm">
           {enclosure.tag}
         </span>
       </div>
 
-      {/* Text content below the image */}
       <div className="p-6">
         <h3 className="font-headline text-xl font-bold text-neutral-50">
           {enclosure.name}
@@ -162,6 +105,6 @@ function EnclosureCard({ enclosure }: { enclosure: Enclosure }) {
           {enclosure.description}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
