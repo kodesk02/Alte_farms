@@ -78,10 +78,14 @@ export default function EnclosureDetailPage({
           </div>
 
           <div className="mt-auto flex gap-3 pt-8">
-            <Button
-              className="h-12 flex-1 rounded-full bg-secondary-500 hover:bg-secondary-600"
-            >
-              <Link href="/contact">Enquire About This Enclosure</Link>
+            <Button className="h-12 flex-1 rounded-full bg-secondary-500 hover:bg-secondary-600">
+              <Link
+                href="https://wa.me/2348136208714"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Enquire About This Enclosure
+              </Link>
             </Button>
           </div>
         </div>
