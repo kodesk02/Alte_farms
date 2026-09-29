@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, Link, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -88,8 +88,13 @@ export function Hero() {
             variant="outline"
             className="h-14 rounded-full border-neutral-700 bg-neutral-900/60 px-8 text-base text-neutral-100 backdrop-blur-md hover:bg-neutral-800"
           >
-            <MessageCircle className="mr-2 h-5 w-5 text-primary-400" />
-            Chat via WhatsApp
+            <Link
+              href="https://wa.me/2348136208714"
+              target="_blank"
+            >
+              <MessageCircle className="mr-2 h-5 w-5 text-primary-400" />
+              Chat via WhatsApp
+            </Link>
           </Button>
         </motion.div>
       </div>
