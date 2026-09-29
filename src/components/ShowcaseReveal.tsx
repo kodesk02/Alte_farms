@@ -16,8 +16,6 @@ export function ShowcaseReveal() {
   const isStacked =
     dimensions.width < 640 || dimensions.height > dimensions.width;
 
-  // Measure the actual rendered section size, so the SVG viewBox always
-  // matches the real aspect ratio — no cropping/overflow on any screen.
   useEffect(() => {
     const updateSize = () => {
       if (!sectionRef.current) return;
@@ -31,8 +29,8 @@ export function ShowcaseReveal() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Travel distance scales with section height instead of a fixed 300px
-      const travel = dimensions.height * 0.9;
+      // Reduce vertical travel distance on mobile/stacked modes to keep text visible during scroll
+      const travel = isStacked ? dimensions.height * 0.45 : dimensions.height * 0.7;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -56,29 +54,32 @@ export function ShowcaseReveal() {
         0,
       );
 
-      gsap.to(marqueeRef.current, {
-        xPercent: -50,
-        repeat: -1,
-        duration: 18,
-        ease: "none",
-      });
+      if (marqueeRef.current) {
+        gsap.to(marqueeRef.current, {
+          xPercent: -50,
+          repeat: -1,
+          duration: 18,
+          ease: "none",
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [dimensions]);
+  }, [dimensions, isStacked]);
 
-  // Font size scales relative to actual width; clamped so it's never
-  // too small on tiny phones or absurdly huge on ultrawide desktops.
   const fontSize = isStacked
-    ? Math.min(Math.max(dimensions.width * 0.22, 48), 160)
+    ? Math.min(Math.max(dimensions.width * 0.22, 48), 140)
     : Math.min(Math.max(dimensions.width * 0.15, 80), 220);
+
+  // Absolute Y-center positions for multi-line layout
+  const lineSpacing = fontSize * 0.45;
+  const centerY = dimensions.height / 2;
 
   return (
     <section
       ref={sectionRef}
       className="relative h-screen w-full overflow-hidden"
     >
-      {/* SVG viewport masking container — viewBox tracks real section size */}
       <svg
         className="h-full w-full select-none"
         viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
@@ -89,13 +90,13 @@ export function ShowcaseReveal() {
             <feGaussianBlur stdDeviation="2" />
           </filter>
         </defs>
-        {/* Completely static image pinned to the SVG stage */}
+
         <foreignObject width="100%" height="100%">
           <video
             width="100%"
             height="100%"
             className="h-full w-full object-cover"
-            style={{ filter: "blur(8px)" }}
+            style={{ filter: "blur(3px)" }}
             autoPlay
             muted
             loop
@@ -105,12 +106,11 @@ export function ShowcaseReveal() {
           </video>
         </foreignObject>
 
-        {/* Text sits on top of the image, no mask */}
         <text
           ref={textRef}
           x="50%"
           y="50%"
-          dominantBaseline="middle"
+          dominantBaseline="central"
           textAnchor="middle"
           fill="#459336"
           fontSize={fontSize}
@@ -120,15 +120,17 @@ export function ShowcaseReveal() {
         >
           {isStacked ? (
             <>
-              <tspan x="50%" dy="-0.55em">
+              <tspan x="50%" y={centerY - lineSpacing} dominantBaseline="central">
                 MOFA
               </tspan>
-              <tspan x="50%" dy="1.1em">
+              <tspan x="50%" y={centerY + lineSpacing} dominantBaseline="central">
                 RMS
               </tspan>
             </>
           ) : (
-            "MOFARMS"
+            <tspan x="50%" y="50%" dominantBaseline="central">
+              MOFARMS
+            </tspan>
           )}
         </text>
       </svg>
