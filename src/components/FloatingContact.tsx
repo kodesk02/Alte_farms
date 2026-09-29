@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Mail, X } from "lucide-react";
 import Link from "next/link";
 
-const WHATSAPP_NUMBER = "2348000000000"; // replace with real number, no + or spaces
-const EMAIL_ADDRESS = "hello@mofarms.com"; // replace with real email
+const WHATSAPP_NUMBER = "2348136208714"; 
+const EMAIL_ADDRESS = "mofarms.ng@gmail.com";
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);

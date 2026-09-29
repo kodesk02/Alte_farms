@@ -23,7 +23,9 @@ export function Navbar() {
   return (
     <header
       className={`sticky top-0 z-50 ${
-        isPageNoNav ? "bg-transparent border-0" : "border-b border-neutral-800 bg-neutral-950/90"
+        isPageNoNav
+          ? "bg-transparent border-0"
+          : "border-b border-neutral-800 bg-neutral-950/90"
       } backdrop-blur-xs`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
@@ -104,14 +106,19 @@ export function Navbar() {
               </li>
             );
           })}
-          <li className="pt-2">
+          <Link
+            href="https://wa.me/2348136208714"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="block w-full pt-2"
+          >
             <Button
               className="w-full rounded-full bg-secondary-500 text-white hover:bg-secondary-600"
-              onClick={() => setIsOpen(false)}
             >
               Contact Us
             </Button>
-          </li>
+          </Link>
         </ul>
       </div>
     </header>
