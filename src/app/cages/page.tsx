@@ -90,7 +90,7 @@ function EnclosureCard({ enclosure }: { enclosure: Enclosure }) {
           alt={enclosure.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-fit transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <span className="font-label absolute left-4 top-4 rounded-full border border-primary-500/40 bg-neutral-950/70 px-3 py-1 text-[10px] uppercase tracking-widest text-primary-300 backdrop-blur-sm">
           {enclosure.tag}

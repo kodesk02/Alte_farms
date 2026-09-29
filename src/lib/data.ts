@@ -104,3 +104,104 @@ export const enclosures: Enclosure[] = [
     ],
   },
 ];
+
+
+export type Category = "all" | "birds" | "small-mammals" | "poultry" | "rare-breeds";
+
+export type Animal = {
+  id: string;
+  name: string;
+  location: string;
+  spec: string;
+  image: string;
+  category: Exclude<Category, "all">;
+  rare?: boolean;
+  tall?: boolean;
+};
+
+export const animals: Animal[] = [
+  {
+    id: "scarlet-macaw",
+    name: "Scarlet Macaw",
+    location: "AVIARY",
+    spec: "A01",
+    image: "/images/parrot.jpg",
+    category: "birds",
+  },
+  {
+    id: "angora-rabbit",
+    name: "Angora Rabbit",
+    location: "MEADOW",
+    spec: "M14",
+    image: "/images/rabbit.jpg",
+    category: "small-mammals",
+  },
+  {
+    id: "nigerian-dwarf-goat",
+    name: "Nigerian Dwarf Goat",
+    location: "HIGHLANDS",
+    spec: "G07",
+    image: "/images/dwarf-goat.jpg",
+    category: "rare-breeds",
+    rare: true,
+    tall: true,
+  },
+  {
+    id: "ayam-cemani",
+    name: "Ayam Cemani",
+    location: "COOP",
+    spec: "C99",
+    image: "/images/black-chicken.jpg",
+    category: "poultry",
+  },
+  {
+    id: "golden-pheasant",
+    name: "Golden Pheasant",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/golden-phesant.jpg",
+    category: "birds",
+  },
+  {
+    id: "silkie-chicken",
+    name: "Silkie Chicken",
+    location: "COOP",
+    spec: "C88",
+    image: "/images/hair.jpg",
+    category: "poultry",
+  },
+  {
+    id: "ostrich",
+    name: "Ostrich",
+    location: "SAVANNA",
+    spec: "S01",
+    image: "/images/ostrich.jpg",
+    category: "birds",
+  },
+  {
+    id: "cockatoo",
+    name: "White Cockatoo",
+    location: "AVIARY",
+    spec: "A33",
+    image: "/images/white.jpg",
+    category: "birds",
+    // rare: true,
+    // tall: true,
+  },
+  {
+    id: "peafowl",
+    name: "Indian peafowl",
+    location: "COOP",
+    spec: "C99",
+    image: "/images/pea.jpg",
+    category: "poultry",
+  },
+  {
+    id: "chinese-goose",
+    name: "Chinese Goose",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/goose.jpg",
+    category: "birds",
+  },
+];

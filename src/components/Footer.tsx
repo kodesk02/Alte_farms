@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { label: "Conservation", href: "/conservation" },
-  { label: "Terms", href: "/terms" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Careers", href: "/careers" },
+  { label: "Home", href: "/" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Habitat & Cages", href: "/cages" },
+  // { label: "Organic Diets", href: "/diets" },
 ];
 
 export function Footer() {

@@ -13,7 +13,8 @@ export function ShowcaseReveal() {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   const [dimensions, setDimensions] = useState({ width: 800, height: 400 });
-  const isStacked = dimensions.width < 640 || dimensions.height > dimensions.width;
+  const isStacked =
+    dimensions.width < 640 || dimensions.height > dimensions.width;
 
   // Measure the actual rendered section size, so the SVG viewBox always
   // matches the real aspect ratio — no cropping/overflow on any screen.
@@ -37,17 +38,22 @@ export function ShowcaseReveal() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=200%",
+          end: "+=100%",
           scrub: 1,
           pin: true,
         },
       });
 
-      tl.fromTo(textRef.current, { y: travel }, { y: -travel, ease: "none" }, 0).fromTo(
+      tl.fromTo(
+        textRef.current,
+        { y: travel },
+        { y: -travel, ease: "none" },
+        0,
+      ).fromTo(
         progressRef.current,
         { scaleX: 0 },
         { scaleX: 1, ease: "none", transformOrigin: "left" },
-        0
+        0,
       );
 
       gsap.to(marqueeRef.current, {
@@ -70,30 +76,8 @@ export function ShowcaseReveal() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-neutral-950"
+      className="relative h-screen w-full overflow-hidden"
     >
-      {/* Progress bar */}
-      <div className="absolute top-0 left-0 z-20 h-[3px] w-full bg-neutral-800">
-        <div ref={progressRef} className="h-full w-full origin-left bg-primary-400" />
-      </div>
-
-      {/* Marquee + info bar */}
-      <div className="absolute top-4 left-0 right-0 z-20 flex items-center justify-between gap-4 overflow-hidden px-4 sm:px-6 lg:px-10">
-        <div className="w-full overflow-hidden sm:w-1/2">
-          <div ref={marqueeRef} className="flex w-max whitespace-nowrap">
-            {Array.from({ length: 2 }).map((_, i) => (
-              <span
-                key={i}
-                className="font-label mr-4 text-[10px] tracking-wide text-neutral-400 sm:text-sm"
-              >
-                MOFARMS&nbsp;|&nbsp;Exotic Animal Showcase&nbsp;&nbsp;•&nbsp;&nbsp;
-                MOFARMS&nbsp;|&nbsp;Exotic Animal Showcase&nbsp;&nbsp;•&nbsp;&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* SVG viewport masking container — viewBox tracks real section size */}
       <svg
         className="h-full w-full select-none"
@@ -101,45 +85,52 @@ export function ShowcaseReveal() {
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <mask id="text-reveal-mask">
-            {/* White parts of the mask reveal the image; black parts hide it */}
-            <rect width="100%" height="100%" fill="black" />
-            <text
-              ref={textRef}
-              x="50%"
-              y="50%"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              fill="white"
-              fontSize={fontSize}
-              fontWeight={900}
-              letterSpacing={isStacked ? "-1" : "-4"}
-              className="font-headline uppercase"
-            >
-              {isStacked ? (
-                <>
-                  <tspan x="50%" dy="-0.55em">
-                    MOFA
-                  </tspan>
-                  <tspan x="50%" dy="1.1em">
-                    RMS
-                  </tspan>
-                </>
-              ) : (
-                "MOFARMS"
-              )}
-            </text>
-          </mask>
+          <filter id="image-blur">
+            <feGaussianBlur stdDeviation="2" />
+          </filter>
         </defs>
-
         {/* Completely static image pinned to the SVG stage */}
-        <image
-          href="/images/macaw2.png"
-          width="100%"
-          height="100%"
-          preserveAspectRatio="xMidYMid slice"
-          mask="url(#text-reveal-mask)"
-        />
+        <foreignObject width="100%" height="100%">
+          <video
+            width="100%"
+            height="100%"
+            className="h-full w-full object-cover"
+            style={{ filter: "blur(8px)" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/mofarms.mp4" type="video/mp4" />
+          </video>
+        </foreignObject>
+
+        {/* Text sits on top of the image, no mask */}
+        <text
+          ref={textRef}
+          x="50%"
+          y="50%"
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fill="#459336"
+          fontSize={fontSize}
+          fontWeight={900}
+          letterSpacing={isStacked ? "-1" : "-4"}
+          className="font-headline uppercase"
+        >
+          {isStacked ? (
+            <>
+              <tspan x="50%" dy="-0.55em">
+                MOFA
+              </tspan>
+              <tspan x="50%" dy="1.1em">
+                RMS
+              </tspan>
+            </>
+          ) : (
+            "MOFARMS"
+          )}
+        </text>
       </svg>
     </section>
   );
