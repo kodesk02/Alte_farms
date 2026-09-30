@@ -34,7 +34,7 @@ export default function GalleryPage() {
 
   const handleFilterChange = (value: Category) => {
     setActiveFilter(value);
-    setVisibleCount(PAGE_SIZE); // reset to the first 10 when the filter changes
+    setVisibleCount(PAGE_SIZE); 
   };
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + PAGE_SIZE);

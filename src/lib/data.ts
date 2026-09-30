@@ -69,7 +69,11 @@ export const enclosures: Enclosure[] = [
     tag: "ARCHITECTURAL BIOTOPE",
     image: "/images/3.jpeg",
     specs: [
-      { label: "Material", value: "Industrial welded steel, fine wire mesh, & integrated lighting fixture" },
+      {
+        label: "Material",
+        value:
+          "Industrial welded steel, fine wire mesh, & integrated lighting fixture",
+      },
       { label: "Sizing", value: "210cm x 120cm x 90cm" },
       { label: "Biome", value: "Indoor / Custom Aviary Sanctuary" },
       { label: "Lead Time", value: "10–12 weeks" },
@@ -93,11 +97,15 @@ export const enclosures: Enclosure[] = [
     slug: "playtop-parrot-tower",
     name: "Executive Playtop Parrot Tower",
     description:
-    "Heavy-duty wrought iron parrot cage featuring an overhead playtop perch, integrated ladders, locking feed doors, and a rolling base with storage shelf.",
+      "Heavy-duty wrought iron parrot cage featuring an overhead playtop perch, integrated ladders, locking feed doors, and a rolling base with storage shelf.",
     tag: "INDOOR BIOTOPE",
     image: "/images/5.jpeg",
     specs: [
-      { label: "Material", value: "Heavy-duty powder-coated wrought iron & natural hardwood perches" },
+      {
+        label: "Material",
+        value:
+          "Heavy-duty powder-coated wrought iron & natural hardwood perches",
+      },
       { label: "Sizing", value: "175cm x 80cm x 60cm" },
       { label: "Biome", value: "Domestic / Large Avian Habitat" },
       { label: "Lead Time", value: "12–14 weeks" },
@@ -105,8 +113,12 @@ export const enclosures: Enclosure[] = [
   },
 ];
 
-
-export type Category = "all" | "birds" | "small-mammals" | "poultry" | "rare-breeds";
+export type Category =
+  | "all"
+  | "birds"
+  | "small-mammals"
+  | "poultry"
+  | "rare-breeds";
 
 export type Animal = {
   id: string;
@@ -202,6 +214,46 @@ export const animals: Animal[] = [
     location: "AVIARY",
     spec: "A22",
     image: "/images/goose.jpg",
+    category: "birds",
+  },
+  {
+    id: "brahma-chicken",
+    name: "Brahma Chicken",
+    location: "COOP",
+    spec: "C88",
+    image: "/images/brahma_chicken.jpg",
+    category: "poultry",
+  },
+  {
+    id: "crowned-crane",
+    name: "Crowned Crane",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/crowned_crane.jpg",
+    category: "birds",
+  },
+  {
+    id: "eclectus-parrot",
+    name: "Eclectus Parrot",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/eclectus.jpg",
+    category: "birds",
+  },
+  {
+    id: "galah-cockatoo",
+    name: "Galah Cockatoo",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/galah_cockt.jpg",
+    category: "birds",
+  },
+  {
+    id: "rosella-parakeet",
+    name: "Rosella Parakeet",
+    location: "AVIARY",
+    spec: "A22",
+    image: "/images/rosella.jpg",
     category: "birds",
   },
 ];

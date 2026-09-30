@@ -78,7 +78,7 @@ export function ShowcaseReveal() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full overflow-hidden hidden md:block"
     >
       <svg
         className="h-full w-full select-none"

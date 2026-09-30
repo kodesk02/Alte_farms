@@ -18,6 +18,10 @@ const fadeUp: Variants = {
 export function Hero() {
   const router = useRouter();
 
+  const handleWhatsAppRedirect = () => {
+    window.open ("https://wa.me/2348136208714", "_blank", "noopener,noreferrer");
+  }
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-neutral-950">
       {/* Full-bleed background image, blurred + darkened */}
@@ -87,14 +91,10 @@ export function Hero() {
           <Button
             variant="outline"
             className="h-14 rounded-full border-neutral-700 bg-neutral-900/60 px-8 text-base text-neutral-100 backdrop-blur-md hover:bg-neutral-800"
+            onClick={handleWhatsAppRedirect}
           >
-            <Link
-              href="https://wa.me/2348136208714"
-              target="_blank"
-            >
               <MessageCircle className="mr-2 h-5 w-5 text-primary-400" />
               Chat via WhatsApp
-            </Link>
           </Button>
         </motion.div>
       </div>
