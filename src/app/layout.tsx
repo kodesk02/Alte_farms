@@ -20,6 +20,16 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+export const metadata = {
+  title: "MoFarms",
+  description: "We sell premium livestock for pets and Meats. We ensure ethicnal and sustainable farming practices for the highest quality of our products.",
+  openGraph: {
+    title: "MoFarms",
+    description: "We sell premium livestock for pets and Meats. We ensure ethicnal and sustainable farming practices for the highest quality of our products.",
+    images: ["/images/pea.jpg"], 
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
