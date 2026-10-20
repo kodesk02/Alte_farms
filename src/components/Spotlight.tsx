@@ -34,8 +34,8 @@ export function Spotlight() {
 
       // Gentle parallax scale-in as it enters view
       gsap.from(".spotlight-image", {
-        scale: 0.9,
         opacity: 0,
+        y: 20,
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -51,7 +51,8 @@ export function Spotlight() {
   return (
     <section
       ref={sectionRef}
-      className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 py-24 lg:grid-cols-2 lg:px-10"
+      // Added overflow-hidden to the section to trap any accidental overflow
+      className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 py-24 lg:grid-cols-2 lg:px-10 overflow-hidden"
     >
       {/* Left: text content */}
       <div>
@@ -70,7 +71,7 @@ export function Spotlight() {
           animate="visible"
           custom={1}
           variants={fadeUp}
-          className="font-headline text-6xl font-extrabold leading-[1.05] text-neutral-50"
+          className="font-headline text-4xl sm:text-6xl font-extrabold leading-[1.05] text-neutral-50"
         >
           South African
           <br />
@@ -82,7 +83,7 @@ export function Spotlight() {
           animate="visible"
           custom={2}
           variants={fadeUp}
-          className="font-body mt-6 max-w-md text-lg text-neutral-300"
+          className="font-body mt-6 max-w-md text-base sm:text-lg text-neutral-300"
         >
           Recognized as the world&apos;s largest living bird, the South African
           Ostrich is a flightless, fast-running species native to open plains.
@@ -109,19 +110,10 @@ export function Spotlight() {
             </div>
           ))}
         </motion.div>
-
-        {/* <motion.div initial="hidden" animate="visible" custom={4} variants={fadeUp} className="mt-10">
-          <Button
-            variant="outline"
-            className="h-12 rounded-full border-neutral-700 px-7 text-primary-400 hover:bg-neutral-800 hover:text-primary-300"
-          >
-            View Care Guide
-          </Button>
-        </motion.div> */}
       </div>
 
       {/* Right: circular image with rotating ring */}
-      <div className="relative mx-auto aspect-square w-full max-w-md">
+      <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-md">
         {/* Rotating dashed/thin ring */}
         <div
           ref={ringRef}
@@ -129,10 +121,10 @@ export function Spotlight() {
         />
 
         {/* Image */}
-        <div className="spotlight-image absolute inset-6 overflow-hidden rounded-full border border-neutral-800">
+        <div className="spotlight-image absolute inset-4 sm:inset-6 overflow-hidden rounded-full border border-neutral-800">
           <Image
             src="/images/ostrich.jpg"
-            alt="Keel-billed Toucan"
+            alt="South African Ostrich"
             fill
             className="h-full w-full object-cover"
           />
