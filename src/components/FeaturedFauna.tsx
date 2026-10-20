@@ -72,8 +72,7 @@ const featured: Fauna[] = [
 ];
 
 const tagStyles: Record<Fauna["tagVariant"], string> = {
-  secondary:
-    "bg-[#B5ACA5]/20 text-[#B5ACA5] border border-[#B5ACA5]/40",
+  secondary: "bg-[#B5ACA5]/20 text-[#B5ACA5] border border-[#B5ACA5]/40",
   primary: "bg-[#7F3502]/20 text-[#7F3502] border border-[#7F3502]/40",
   muted: "bg-[#905E2E]/20 text-[#905E2E] border border-[#905E2E]/40",
 };
@@ -120,38 +119,43 @@ export function FeaturedFauna() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#191D17] mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-10 lg:py-24"
+      className="bg-[#191D17] w-full px-4 py-12 md:px-6 lg:px-10 lg:py-24"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-none md:grid-rows-[16rem_16rem_16rem] gap-4">
-        {/* Header content inside the top cell */}
-        <div className="fauna-heading col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-between pr-0 md:pr-4 pb-4 md:pb-2">
-          <div>
-            <h2 className="font-headline text-3xl font-extrabold text-neutral-50 sm:text-4xl lg:text-5xl">
-              Our best sellers
-            </h2>
-            <p className="font-body mt-3 text-sm md:text-base leading-relaxed text-neutral-400">
-              Our most magnificent residents, curated for visual splendor. From
-              rainforest canopies to alpine slopes, each creature in our
-              sanctuary is cared for with a dedicated habitat, specialized diet,
-              and round-the-clock attention.
-            </p>
+      <div className="max-w-7xl mx-auto">
+        <div
+          className="grid grid-cols-1 md:grid-cols-4 
+                    grid-rows-none 
+                    md:grid-rows-[16rem_16rem_16rem] 
+                    gap-4"
+        >
+          <div className="fauna-heading col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-between pr-0 md:pr-4 pb-4 md:pb-2">
+            <div>
+              <h2 className="font-headline text-3xl font-extrabold text-neutral-50 sm:text-4xl lg:text-5xl">
+                Our best sellers
+              </h2>
+              <p className="font-body mt-3 text-sm md:text-base leading-relaxed text-neutral-400">
+                Our most magnificent residents, curated for visual splendor.
+                From rainforest canopies to alpine slopes, each creature in our
+                sanctuary is cared for with a dedicated habitat, specialized
+                diet, and round-the-clock attention.
+              </p>
 
-          <Button
-          onClick={() => router.push("/gallery")}
-            variant="outline"
-            className="group mt-10 h-11 w-fit rounded-full bg-primary-500/50 px-6 text-sm text-primary-300 hover:bg-primary-500/10"
-          >
-              View Complete Gallery
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+              <Button
+                onClick={() => router.push("/gallery")}
+                variant="outline"
+                className="group mt-10 h-11 w-fit rounded-full bg-primary-500/50 px-6 text-sm text-primary-300 hover:bg-primary-500/10"
+              >
+                View Complete Gallery
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
           </div>
 
+          {/* Fauna Bento Cards */}
+          {featured.map((animal) => (
+            <FaunaCard key={animal.name} animal={animal} />
+          ))}
         </div>
-
-        {/* Fauna Bento Cards */}
-        {featured.map((animal) => (
-          <FaunaCard key={animal.name} animal={animal} />
-        ))}
       </div>
     </section>
   );

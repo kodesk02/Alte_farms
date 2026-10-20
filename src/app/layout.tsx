@@ -1,7 +1,6 @@
 import { Sora, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
 import { FloatingContact } from "@/components/FloatingContact";
 import ConditionalNavbar from "@/components/ConditionalNavbar";
 
